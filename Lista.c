@@ -39,7 +39,7 @@ void* buscarDato(Lista lista,void *dato, int (*comparar)(void*, void*))
 	Nodo *actual,*anterior=NULL;
 	for( actual = lista.inicio ; actual!=NULL ;  actual = actual->sig)
 	{
-		if( lista.comparar(dato,actual->dato) == 0)
+		if( comparar(dato,actual->dato) == 0)
 		{
 			return actual->dato;
 		}
@@ -89,9 +89,9 @@ void mostrarLista(Lista lista)
 	{
 		printf(" ");
 		lista.imprimir(p->dato);
-		printf("->");
+		printf(" -> ");
 	}
-	printf("NULL");
+	printf("NULL\n");
 }
 
 void insertarFinal(Lista *lista,void* dato)
@@ -194,7 +194,7 @@ void reordenar(Lista *listaOrigen, int (*comparar)(void*, void*)){
   aux.comparar = comparar;
   aux.imprimir = listaOrigen->imprimir;
   Nodo *actual;
-  for( actual = listaOrigen->inicio ; actual != NULL;){
+  for(actual = listaOrigen->inicio ; actual != NULL;){
     insertarOrdenado(&aux, actual->dato);
     actual = actual->sig;
     eliminarEnPosicion(listaOrigen, 0);
