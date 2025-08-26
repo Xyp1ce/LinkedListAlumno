@@ -14,12 +14,12 @@ void borrarLista(Lista *lista)
 	lista->cant = 0;		
 }
 
-void borrarDato(Lista *lista,void* dato)
+void borrarDato(Lista *lista,void* dato, int (*comparar)(void*, void*))
 {
 	Nodo *actual,*anterior = NULL;
 	for( actual = lista->inicio ; actual!=NULL ;  actual = actual->sig)
 	{
-		if(lista->comparar(dato,actual->dato) == 0)
+		if(comparar(dato,actual->dato) == 0)
 		{
 			if(anterior!=NULL)
 				anterior->sig = actual->sig;
@@ -46,7 +46,6 @@ void* buscarDato(Lista lista,void *dato, int (*comparar)(void*, void*))
 		anterior = actual;
 	}	
 	return NULL;
-	
 }
 
 void insertarOrdenado(Lista *lista,void* dato)
@@ -55,7 +54,7 @@ void insertarOrdenado(Lista *lista,void* dato)
 	Nodo *actual,*anterior=NULL;
 	for( actual = lista->inicio ; actual!=NULL ;  actual = actual->sig)
 	{
-		if( lista->comparar(dato,actual->dato) == -1)
+		if( lista->comparar(dato,actual->dato) < 0)
 		//if( dato < actual->dato) //CONDICION DE PARO: AQUI VOY A INSERTAR
 		{
 			if(anterior!=NULL)

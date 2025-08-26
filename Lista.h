@@ -15,7 +15,7 @@ typedef struct
 void mostrarLista(Lista);
 void insertarFinal(Lista*,void*);
 void borrarLista(Lista *);
-void borrarDato(Lista *lista,void* dato);
+void borrarDato(Lista *lista,void* dato, int (*comparar)(void*, void*));
 void* buscarDato(Lista lista,void *dato, int (*comparar)(void*, void*));
 
 void insertarOrdenado(Lista *lista,void* dato);
